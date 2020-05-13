@@ -2,17 +2,20 @@ import React from 'react';
 
 import Form from 'react-bootstrap/Form';
 
-const CheckBoxField = (props) => (
+class CheckBoxField extends React.Component {
+  render() {
+    return (
     <Form.Group>
       <Form.Check
-      	id={props.id}
+      	id={this.props.id}
         required
-        label={props.labelText}
-        disabled={props.isDisabled}
+        label={this.props.labelText}
+        disabled={this.props.isDisabled}
       />
     </Form.Group>
-  );
-
+    );
+  }
+}
 CheckBoxField.defaultProps = {
   isDisabled: false
 };

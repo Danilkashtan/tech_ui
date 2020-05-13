@@ -2,12 +2,17 @@ import React from 'react';
 
 import Form from 'react-bootstrap/Form';
 
-const TextAreaField = (props) => (
-	<Form.Group id={props.id}>
-	    <Form.Label>{props.labelText}</Form.Label>
-	    <Form.Control as="textarea" rows={props.rows} disabled={props.isDisabled}/>
-    </Form.Group>
-  );
+
+class TextAreaField extends React.Component {
+  render() {
+      return (
+		<Form.Group id={this.props.id}>
+		    <Form.Label>{this.props.labelText}</Form.Label>
+		    <Form.Control as="textarea" rows={this.props.rows} disabled={this.props.isDisabled}/>
+	    </Form.Group>
+	  );
+	}
+}
 
 TextAreaField.defaultProps = {
   rows: '3',

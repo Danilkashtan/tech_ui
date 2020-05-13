@@ -1,23 +1,33 @@
 import React from 'react';
 
 import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Accordion from 'react-bootstrap/Accordion';
+import Card from 'react-bootstrap/Card';
 
-const RadioButtonGroup = (props) => (
-    <Form.Group id={props.id}>
-      <Form.Label>{props.labelText}</Form.Label>
-          {
-              props.radios.map((radio) => {
-              return (<Form.Check 
-                        type="radio" 
-                        label={radio.labelText} 
-                        name={props.id} 
-                        id={radio.id} 
-                        disabled={radio.isDisabled}
-                      />);
-          })
-        }
-    </Form.Group>
-  );
+class RadioButtonGroup extends React.Component {
+  render() {
+      return (
+        <Form.Group id={this.props.id}>
+          <Form.Label>{this.props.labelText}</Form.Label>
+              {
+                  this.props.radios.map((radio) => {
+                  return (<Form.Check 
+                            type="radio" 
+                            label={radio.labelText} 
+                            name={this.props.id} 
+                            id={radio.id} 
+                          />);
+              })
+            }
+        </Form.Group>
+      );
+    }
+  }
 
 RadioButtonGroup.defaultProps = {
   radios: [{labelText: 'First Radio',
