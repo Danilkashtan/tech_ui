@@ -6,9 +6,9 @@ import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 
 class Dropdown extends React.Component {
+
 	render() {
     	return (
-			<Form>
 				<Form.Group>
 			        <Accordion defaultActiveKey="0">
 			        	<Card>
@@ -25,7 +25,6 @@ class Dropdown extends React.Component {
 			         	</Card>
 			        </Accordion>
 			    </Form.Group>
-			</Form>
   			);
     }
 }

@@ -19,20 +19,31 @@ const myRadios = [{labelText: 'My first Radio',
             {labelText: 'My third Radio',
             id: 'myRadio3',
             isDisabled: 'true'}];
+  var jsonObj = {};
 
 class OtherModule extends React.Component {
+  eventhandler = data =>  {
+    if (data !== null && data !== undefined) {
+      var json = JSON.stringify(data);
+      var jsonParse = JSON.parse(json);
+      var key = Object.keys(jsonParse)[0];
+      jsonObj[key] = jsonParse[key];
+      console.log("jsonObj " + JSON.stringify(jsonObj));
+    this.props.changeUnit(JSON.stringify(jsonObj));    }
+  }
+
   render() {
       return ( 
     	<Form.Group>
     				<Form.Row>
                       <Col>
-                        <InputField id='city' labelText="Город" />
+                        <InputField id='city' value="other" labelText="Город" onChange={this.eventhandler}/>
                       </Col>
                       <Col>
-                        <InputField id='street' labelText="Улица" />
+                        <InputField id='street' labelText="Улица" onChange={this.eventhandler}/>
                       </Col>
                       <Col>
-                        <InputField id='house' labelText="Дом" />
+                        <InputField id='house' labelText="Дом" onChange={this.eventhandler}/>
                       </Col>
                       <Col>
                         <InputField id='city' labelText="Очень" />
@@ -73,11 +84,12 @@ class OtherModule extends React.Component {
                         <InputField id='city' labelText="Много" />
                       </Col>
                 </Form.Row>
-                <TextAreaField id='1' labelText='TextAreaField'/>
-                <CheckBoxField id='1' labelText='CheckBox'/>
-                <SelectField id='1' labelText='SelectField' options={selectOptions}/>
-                <RadioButtonGroup id='radio' labelText="Radios" radios={myRadios} />
-                <Range id='range' labelText="Range"/>
+                <TextAreaField id='textArea' labelText='TextAreaField' onChange={this.eventhandler}/>
+                <CheckBoxField id='check' labelText='CheckBox' checked="true" onChange={this.eventhandler}/>
+                <SelectField id='select' labelText='SelectField' options={selectOptions} onChange={this.eventhandler}/>
+                //TODO не работает (берется только первое выбранное значение)
+                <RadioButtonGroup id='radio' labelText="Radios" defaultRadio="myRadio2" radios={myRadios} onChange={this.eventhandler}/>
+                <Range id='range' labelText="Range" onChange={this.eventhandler}/>
             </Form.Group>
         );
       }
