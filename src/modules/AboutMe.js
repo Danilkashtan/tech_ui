@@ -20,7 +20,6 @@ class AboutMe extends React.Component {
   render() {
       return ( 
 		  <Form.Group>
-		  		<h3>{this.props.unit}</h3>
 			  <InputField value="about" id='firstName' labelText="Имя" onChange={this.eventhandler}/>
 			  <InputField id='secondName' labelText="Фамилия" onChange={this.eventhandler}/>
 			  <InputField id='middleName' labelText="Отчество" onChange={this.eventhandler}/>

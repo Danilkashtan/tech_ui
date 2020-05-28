@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 
@@ -19,7 +18,7 @@ const myRadios = [{labelText: 'My first Radio',
             {labelText: 'My third Radio',
             id: 'myRadio3',
             isDisabled: 'true'}];
-  var jsonObj = {};
+var jsonObj = {};
 
 class OtherModule extends React.Component {
   eventhandler = data =>  {
@@ -29,71 +28,70 @@ class OtherModule extends React.Component {
       var key = Object.keys(jsonParse)[0];
       jsonObj[key] = jsonParse[key];
       console.log("jsonObj " + JSON.stringify(jsonObj));
-    this.props.changeUnit(JSON.stringify(jsonObj));    }
+      this.props.changeUnit(JSON.stringify(jsonObj));    }
   }
 
   render() {
       return ( 
-    	<Form.Group>
+    	    <Form.Group>
     				<Form.Row>
-                      <Col>
-                        <InputField id='city' value="other" labelText="Город" onChange={this.eventhandler}/>
-                      </Col>
-                      <Col>
-                        <InputField id='street' labelText="Улица" onChange={this.eventhandler}/>
-                      </Col>
-                      <Col>
-                        <InputField id='house' labelText="Дом" onChange={this.eventhandler}/>
-                      </Col>
-                      <Col>
-                        <InputField id='city' labelText="Очень" />
-                      </Col>
-                      <Col>
-                        <InputField id='city' labelText="Много" />
-                      </Col>
-                      <Col>
-                        <InputField id='city' labelText="Полей" />
-                      </Col>
-                      <Col>
-                        <InputField id='city' labelText="ИХ" />
-                      </Col>
-                      <Col>
-                        <InputField id='city' labelText="РЕАЛЬНО" isDisabled="true"/>
-                      </Col>
-                      <Col>
-                        <InputField id='city' labelText="ОЧЕНЬ" isDisabled="true"/>
-                      </Col>
-                      <Col>
-                        <InputField id='city' labelText="МНОГО" isDisabled="true"/>
-                      </Col>
-                      <Col>
-                        <InputField id='city' labelText="ALARM!!!" isDisabled="true"/>
-                      </Col>
-                </Form.Row>
-                <Form.Row>
-                      <Col>
-                        <InputField id='city' labelText="Ну" />
-                      </Col>
-                      <Col>
-                        <InputField id='street' labelText="А тут" />
-                      </Col>
-                      <Col>
-                        <InputField id='house' labelText="Не очень" />
-                      </Col>
-                      <Col>
-                        <InputField id='city' labelText="Много" />
-                      </Col>
-                </Form.Row>
-                <TextAreaField id='textArea' labelText='TextAreaField' onChange={this.eventhandler}/>
-                <CheckBoxField id='check' labelText='CheckBox' checked="true" onChange={this.eventhandler}/>
-                <SelectField id='select' labelText='SelectField' options={selectOptions} onChange={this.eventhandler}/>
-                //TODO не работает (берется только первое выбранное значение)
-                <RadioButtonGroup id='radio' labelText="Radios" defaultRadio="myRadio2" radios={myRadios} onChange={this.eventhandler}/>
-                <Range id='range' labelText="Range" onChange={this.eventhandler}/>
-            </Form.Group>
-        );
-      }
-    }
+              <Col>
+                <InputField id='city' value="other" labelText="Город" onChange={this.eventhandler}/>
+              </Col>
+              <Col>
+                <InputField id='street' labelText="Улица" onChange={this.eventhandler}/>
+              </Col>
+              <Col>
+                <InputField id='house' labelText="Дом" onChange={this.eventhandler}/>
+              </Col>
+              <Col>
+                <InputField id='city' labelText="Очень" />
+              </Col>
+              <Col>
+                <InputField id='city' labelText="Много" />
+              </Col>
+              <Col>
+                <InputField id='city' labelText="Полей" />
+              </Col>
+              <Col>
+                <InputField id='city' labelText="ИХ" />
+              </Col>
+              <Col>
+                <InputField id='city' labelText="РЕАЛЬНО" isDisabled="true"/>
+              </Col>
+              <Col>
+                <InputField id='city' labelText="ОЧЕНЬ" isDisabled="true"/>
+              </Col>
+              <Col>
+                <InputField id='city' labelText="МНОГО" isDisabled="true"/>
+              </Col>
+              <Col>
+                <InputField id='city' labelText="ALARM!!!" isDisabled="true"/>
+              </Col>
+            </Form.Row>
+            <Form.Row>
+              <Col>
+                <InputField id='city' labelText="Ну" />
+              </Col>
+              <Col>
+                <InputField id='street' labelText="А тут" />
+              </Col>
+              <Col>
+                <InputField id='house' labelText="Не очень" />
+              </Col>
+              <Col>
+                <InputField id='city' labelText="Много" />
+              </Col>
+            </Form.Row>
+            <TextAreaField id='textArea' labelText='TextAreaField' onChange={this.eventhandler}/>
+            <CheckBoxField id='check' labelText='CheckBox' checked={true} onChange={this.eventhandler}/>
+            <SelectField id='select' labelText='SelectField' options={selectOptions} onChange={this.eventhandler}/>
+            <RadioButtonGroup id='radio' labelText="Radios" defaultRadio="myRadio2" radios={myRadios} onChange={this.eventhandler}/>
+            <Range id='range' labelText="Range" onChange={this.eventhandler}/>
+          </Form.Group>
+      );
+  }
+}
 
 OtherModule.defaultProps = {
   isdisabled: false

@@ -8,24 +8,24 @@ import Card from 'react-bootstrap/Card';
 class Dropdown extends React.Component {
 
 	render() {
-    	return (
-				<Form.Group>
-			        <Accordion defaultActiveKey="0">
-			        	<Card>
-			            	<Card.Header>
-			              		<Accordion.Toggle as={Button} variant="link" eventKey="0">
-			                		{this.props.labelText}
-			              		</Accordion.Toggle>
-			            	</Card.Header>
-			            	<Accordion.Collapse eventKey="0">
-			              		<Card.Body>
-			              			{this.props.children}
-			              		</Card.Body>
-			          		</Accordion.Collapse>
-			         	</Card>
-			        </Accordion>
-			    </Form.Group>
-  			);
+      return (
+		<Form.Group>
+		  <Accordion defaultActiveKey="0">
+			<Card>
+			  <Card.Header>
+			    <Accordion.Toggle as={Button} variant="link" eventKey="0">
+			      {this.props.labelText}
+			    </Accordion.Toggle>
+			  </Card.Header>
+			  <Accordion.Collapse eventKey="0">
+				  <Card.Body>
+				  	{this.props.children}
+				  </Card.Body>
+			  </Accordion.Collapse>
+			</Card>
+		  </Accordion>
+		</Form.Group>
+  	  );
     }
 }
 

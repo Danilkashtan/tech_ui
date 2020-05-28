@@ -12,6 +12,7 @@ import './css/App.css';
 
 var json = {};
 var finishJson = {};
+
 class App extends React.Component {
 
 	changeUnit(item) {
@@ -37,10 +38,10 @@ handleSubmit(event) {
 			<Container>
 			  <Form onSubmit={this.handleSubmit}>
 				  <Dropdown labelText='Обо мне'>
-				  <AboutMe changeUnit={this.changeUnit.bind(this)}/>
+				  	<AboutMe changeUnit={this.changeUnit.bind(this)}/>
 				  </Dropdown>
 				  <Dropdown labelText='Другой модуль'>
-				  <OtherModule changeUnit={this.changeUnit.bind(this)}/>
+				  	<OtherModule changeUnit={this.changeUnit.bind(this)}/>
 				  </Dropdown>
 				  <Button onClick={this.handleSubmit} type="submit">Отправить на решение</Button>
 			  </Form>
