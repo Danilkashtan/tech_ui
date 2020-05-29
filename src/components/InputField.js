@@ -1,43 +1,17 @@
 import React from 'react';
 
 import Form from 'react-bootstrap/Form';
-var json = {}
-class InputField extends React.Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-		  value: this.props.value
-		}
-	}
 
-  handleChange = e => {
-    this.setState({ value: e.target.value });
-  }
+const InputField = (props) => {
 
-  componentDidUpdate() {
-    if (this.props.onChange) {
-      json = {};
-  	  json[this.props.id] = this.state.value;
-      this.props.onChange(json);
-    }
-  }
-
-  componentDidMount() {
-  	this.componentDidUpdate()
-  }
-
-  render() {
-    return (
-   	  <Form.Group>
-        <Form.Label>{this.props.labelText}</Form.Label>
-        <Form.Control value={this.state.value} id={this.props.id} type="text" onChange={this.handleChange} />
-      </Form.Group>
-    );
-  }
+  return (
+    <Form.Group id={props.id}>
+      <Form.Label>{props.label}</Form.Label>
+      <Form.Control name={props.name} value={props.value} type={props.type} onChange={props.onChange} isInvalid={props.isInvalid} onBlur={props.onBlur}/>
+      <Form.Control.Feedback type="invalid">{props.errors}</Form.Control.Feedback>
+    </Form.Group>
+  );
 }
-InputField.defaultProps = {
-  isDisabled: false,
-  value:"sdf"
-};
+
 
 export default InputField;

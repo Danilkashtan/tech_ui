@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import CheckBoxField from './../components/CheckBoxField.js';
 import TextAreaField from './../components/TextAreaField.js';
 import SelectField from './../components/SelectField.js';
+import Label from './../components/Label.js';
 import InputField from './../components/InputField.js';
 import RadioButtonGroup from './../components/RadioButtonGroup.js';
 import Range from './../components/Range.js';
@@ -20,81 +21,128 @@ const myRadios = [{labelText: 'My first Radio',
             isDisabled: 'true'}];
 var jsonObj = {};
 
-class OtherModule extends React.Component {
-  eventhandler = data =>  {
-    if (data !== null && data !== undefined) {
-      var json = JSON.stringify(data);
-      var jsonParse = JSON.parse(json);
-      var key = Object.keys(jsonParse)[0];
-      jsonObj[key] = jsonParse[key];
-      console.log("jsonObj " + JSON.stringify(jsonObj));
-      this.props.changeUnit(JSON.stringify(jsonObj));    }
-  }
+const OtherModule = (props) => {
 
-  render() {
-      return ( 
-    	    <Form.Group>
+    const formik = props.formik;
+
+    return (
+    	    <div>
     				<Form.Row>
               <Col>
-                <InputField id='city' value="other" labelText="Город" onChange={this.eventhandler}/>
+                  <InputField
+                          label="City"
+                          id="city"
+                          name="city"
+                          onChange={formik.handleChange}
+                          value={formik.values.city}
+                          type="text"
+                          isInvalid={formik.errors.city && formik.touched.city}
+                          errors={formik.errors.city}
+                          onBlur={formik.handleBlur}
+                        />                  
               </Col>
               <Col>
-                <InputField id='street' labelText="Улица" onChange={this.eventhandler}/>
+                <Form.Group>
+                  <InputField label="Улица" id="street" name="street" onChange={formik.handleChange} value={formik.values.street} type="text" />
+                  {formik.errors.street ? <div>{formik.errors.street}</div> : null}
+                </Form.Group>              
               </Col>
               <Col>
-                <InputField id='house' labelText="Дом" onChange={this.eventhandler}/>
+                <Form.Group>
+                  <InputField label="Дом" id="house" name="house" onChange={formik.handleChange} value={formik.values.house} type="text" />
+                  {formik.errors.house ? <div>{formik.errors.house}</div> : null}
+                </Form.Group>              
               </Col>
               <Col>
-                <InputField id='city' labelText="Очень" />
+                <Form.Group>
+                  <InputField label="Тест" id="test" name="test" onChange={formik.handleChange} value={formik.values.test} type="text" />
+                  {formik.errors.test ? <div>{formik.errors.test}</div> : null}
+                </Form.Group>              
               </Col>
               <Col>
-                <InputField id='city' labelText="Много" />
+                <Form.Group>
+                  <InputField label="Тест" id="test" name="test" onChange={formik.handleChange} value={formik.values.test} type="text" />
+                  {formik.errors.test ? <div>{formik.errors.test}</div> : null}
+                </Form.Group>              
               </Col>
               <Col>
-                <InputField id='city' labelText="Полей" />
+                <Form.Group>
+                  <InputField label="Тест" id="test" name="test" onChange={formik.handleChange} value={formik.values.test} type="text" />
+                  {formik.errors.test ? <div>{formik.errors.test}</div> : null}
+                </Form.Group>              
               </Col>
               <Col>
-                <InputField id='city' labelText="ИХ" />
+                <Form.Group>
+                  <InputField label="Тест" id="test" name="test" onChange={formik.handleChange} value={formik.values.test} type="text" />
+                  {formik.errors.test ? <div>{formik.errors.test}</div> : null}
+                </Form.Group>              
               </Col>
               <Col>
-                <InputField id='city' labelText="РЕАЛЬНО" isDisabled="true"/>
-              </Col>
-              <Col>
-                <InputField id='city' labelText="ОЧЕНЬ" isDisabled="true"/>
-              </Col>
-              <Col>
-                <InputField id='city' labelText="МНОГО" isDisabled="true"/>
-              </Col>
-              <Col>
-                <InputField id='city' labelText="ALARM!!!" isDisabled="true"/>
+                <Form.Group>
+                  <InputField label="Тест" id="test" name="test" onChange={formik.handleChange} value={formik.values.test} type="text" />
+                  {formik.errors.test ? <div>{formik.errors.test}</div> : null}
+                </Form.Group>              
               </Col>
             </Form.Row>
-            <Form.Row>
-              <Col>
-                <InputField id='city' labelText="Ну" />
-              </Col>
-              <Col>
-                <InputField id='street' labelText="А тут" />
-              </Col>
-              <Col>
-                <InputField id='house' labelText="Не очень" />
-              </Col>
-              <Col>
-                <InputField id='city' labelText="Много" />
-              </Col>
-            </Form.Row>
-            <TextAreaField id='textArea' labelText='TextAreaField' onChange={this.eventhandler}/>
-            <CheckBoxField id='check' labelText='CheckBox' checked={true} onChange={this.eventhandler}/>
-            <SelectField id='select' labelText='SelectField' options={selectOptions} onChange={this.eventhandler}/>
-            <RadioButtonGroup id='radio' labelText="Radios" defaultRadio="myRadio2" radios={myRadios} onChange={this.eventhandler}/>
-            <Range id='range' labelText="Range" onChange={this.eventhandler}/>
-          </Form.Group>
-      );
-  }
+            <Label labelText='LABEL' />
+            <TextAreaField
+                          label="TextArea"
+                          id="textArea"
+                          name="textArea"
+                          rows="3"
+                          onChange={formik.handleChange}
+                          value={formik.values.textArea}
+                          isInvalid={formik.errors.textArea && formik.touched.textArea}
+                          errors={formik.errors.textArea}
+                          onBlur={formik.handleBlur}
+                        />        
+            <CheckBoxField 
+              id='check' 
+              name='check' 
+              label='CheckBox' 
+              onChange={formik.handleChange}
+              value={formik.values.check}
+              isInvalid={formik.errors.check && formik.touched.check}
+              errors={formik.errors.check}
+              onBlur={formik.handleBlur}
+              isDisabled={false}
+               />
+            <SelectField 
+              id='select' 
+              name='select' 
+              label='SelectField' 
+              options={selectOptions} 
+              onChange={formik.handleChange}
+              value={formik.values.select}
+              isInvalid={formik.errors.select && formik.touched.select}
+              errors={formik.errors.select}
+              onBlur={formik.handleBlur}
+              isDisabled={false}
+            />
+            <RadioButtonGroup 
+              id='radio' 
+              name='radio' 
+              label='RadioButton'  
+              defaultRadio="myRadio2" 
+              onChange={formik.handleChange}
+              value={formik.values.radio}
+              isInvalid={formik.errors.radio && formik.touched.radio}
+              errors={formik.errors.radio}
+              onBlur={formik.handleBlur}
+              isDisabled={false}
+              radios={myRadios} />
+            <Range
+                          label="Range"
+                          id="range"
+                          name="range"
+                          onChange={formik.handleChange}
+                          value={formik.values.range}
+                          isInvalid={formik.errors.range && formik.touched.range}
+                          errors={formik.errors.range}
+                          onBlur={formik.handleBlur}
+                        />     
+          </div>
+    );
 }
-
-OtherModule.defaultProps = {
-  isdisabled: false
-};
 
 export default OtherModule;

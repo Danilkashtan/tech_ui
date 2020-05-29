@@ -1,57 +1,40 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 
-var json = {}
 
-class RadioButtonGroup extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      value: this.props.defaultRadio,
-    }
-  }
-
-  handleChange = e => {
-    this.setState({ value: e.target.id });
-  }
-
-  componentDidUpdate() {
-    if (this.props.onChange) {
-      json = {};
-      json[this.props.id] = this.state.value;
-      this.props.onChange(json);
-    }
-  }
-
-  componentDidMount() {
-    this.componentDidUpdate();
-  }
-
-  render() {
-      return (
-        <Form.Group id={this.props.id}>
-          <Form.Label>{this.props.labelText}</Form.Label>
+const RadioButtonGroup = (props) => {
+  return (
+        <Form.Group id={props.id}>
+          <Form.Label>{props.label}</Form.Label>
             {
-              this.props.radios.map((radio) => {
-                if(radio.id===this.state.value) {
+              props.radios.map((radio) => {
+                if(props.value===radio.id) {
                   var isChecked = true;
                 }
-                return (<Form.Check 
-                    type="radio" 
-                    label={radio.labelText} 
-                    value={this.state.value}
-                    name={this.props.id} 
-                    id={radio.id} 
-                    key={radio.id} 
-                    checked= {isChecked}
-                    onChange={this.handleChange} 
-                />);
+                return (
+                <Form.Check
+                  type="radio"
+                  label={radio.labelText} 
+                  name={props.name} 
+                  value={radio.id}
+                  onChange={props.onChange} 
+                  isInvalid={props.isInvalid} 
+                  onBlur={props.onBlur}
+                  disabled={props.isDisabled}
+                  checked={isChecked}
+                />
+                );
               })
             }
+            {props.errors ? 
+          <div>
+            <Form.Label type="invalid" style={{color: "red", fontSize: "13px"}}>{props.errors}</Form.Label>
+          </div>
+          : null }
         </Form.Group>
       );
   }
-}
+
 
 RadioButtonGroup.defaultProps = {
   radios: [{labelText: 'First Radio',

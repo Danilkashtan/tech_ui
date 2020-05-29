@@ -5,3 +5,11 @@
 .container {
 	margin-top: 20px;
 }
+
+.accordion{
+	margin-bottom: 20px;
+}
+
+.invalid {
+	color: red;
+}

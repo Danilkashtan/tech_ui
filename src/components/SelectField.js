@@ -1,51 +1,30 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 
-var json = {};
+const SelectField = (props) => {
 
-class SelectField extends React.Component {
-
-  constructor(props) {
-    super(props)
-    this.state = {
-      value: this.props.options[0].value
-    }
-  }
-  handleChange = e => {
-    this.setState({ value: e.target.value });
-}
-
-  componentDidUpdate() {
-    if (this.props.onChange) {
-      json = {};
-      json[this.props.id] = this.state.value;
-      this.props.onChange(json);
-    }
-  }
-
-  componentDidMount() {
-    this.componentDidUpdate()
-  }
-
-  render() {
-      return (
-      	<Form.Group>
-          <Form.Label>{this.props.labelText}</Form.Label>
-          <Form.Control value={this.state.value} id={this.props.id} as="select" custom disabled={this.props.isDisabled} onChange={this.handleChange}>
+  return (
+      	<Form.Group id={props.id}>
+          <Form.Label>{props.label}</Form.Label>
+          <Form.Control 
+            name={props.name} 
+            value={props.value} 
+            as="select" 
+            custom 
+            disabled={props.isDisabled} 
+            onChange={props.onChange} 
+            isInvalid={props.isInvalid} 
+            onBlur={props.onBlur}>
             {
-              this.props.options.map((option, index) => {
-              return (<option key={index} value={option.value}>{option.value}</option>)
+              props.options.map((option, index) => {
+                return (<option key={index} value={option.value}>{option.value}</option>)
            	  })
            	}
           </Form.Control>
+          <Form.Control.Feedback type="invalid">{props.errors}</Form.Control.Feedback>
         </Form.Group>
       );
-  }
 }
 
-SelectField.defaultProps = {
-  options: [{value: 'first'}, {value: 'second'}, {value: 'third'}],
-  isDisabled: false
-};
 
 export default SelectField;

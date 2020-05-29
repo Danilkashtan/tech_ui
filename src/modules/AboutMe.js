@@ -1,30 +1,46 @@
 import React from 'react';
-
 import Form from 'react-bootstrap/Form';
+import InputField from '../components/InputField.js';
 
-import InputField from './../components/InputField.js';
-	var jsonObj = {};
-    
-class AboutMe extends React.Component {
+const NewModule = (props) => {
+  const formik = props.formik;
 
-  eventhandler = data =>  {
-  	if (data !== null && data !== undefined) {
-    	var json = JSON.stringify(data);
-    	var jsonParse = JSON.parse(json);
-    	var key = Object.keys(jsonParse)[0];
-    	jsonObj[key] = jsonParse[key];
-    	console.log("jsonObj " + JSON.stringify(jsonObj));
-		this.props.changeUnit(JSON.stringify(jsonObj));    }
-  }
-
-  render() {
-      return ( 
-		  <Form.Group>
-			  <InputField value="about" id='firstName' labelText="Имя" onChange={this.eventhandler}/>
-			  <InputField id='secondName' labelText="Фамилия" onChange={this.eventhandler}/>
-			  <InputField id='middleName' labelText="Отчество" onChange={this.eventhandler}/>
-		  </Form.Group>
-		);
-	}
+  return (
+    <Form.Group>
+      <InputField
+        label="Name"
+        id="firstName"
+        name="firstName"
+        onChange={formik.handleChange}
+        value={formik.values.firstName}
+        type="text"
+        isInvalid={formik.errors.firstName && formik.touched.firstName}
+        errors={formik.errors.firstName}
+        onBlur={formik.handleBlur}
+      />
+      <InputField
+        label="Second Name"
+        id="secondName"
+        name="secondName"
+        onChange={formik.handleChange}
+        value={formik.values.secondName}
+        type="text"
+        isInvalid={formik.errors.secondName && formik.touched.secondName}
+        errors={formik.errors.secondName}
+        onBlur={formik.handleBlur}
+      />
+      <InputField
+        label="Middle Name"
+        id="middleName"
+        name="middleName"
+        onChange={formik.handleChange}
+        alue={formik.values.middleName}
+        type="text"
+        isInvalid={formik.errors.middleName && formik.touched.middleName}
+        errors={formik.errors.middleName}
+        onBlur={formik.handleBlur}
+      />
+    </Form.Group>
+  );
 }
-export default AboutMe; 
+export default NewModule; 

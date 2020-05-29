@@ -2,53 +2,53 @@ import React from 'react';
 
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
+import Dropdown from './components/Dropdown.js';
 
 import AboutMe from './modules/AboutMe.js';
-import Dropdown from './components/Dropdown.js';
 import OtherModule from './modules/OtherModule.js';
+
 import Form from 'react-bootstrap/Form';
+import { useFormik } from 'formik';
 
 import './css/App.css';
+import validation from './validation.js';
 
-var json = {};
-var finishJson = {};
+const App = () => {
 
-class App extends React.Component {
+  const formik = useFormik({
+    initialValues: {
+      firstName: "123",
+      secondName: "123123",
+      middleName: "",
+      city: "123",
+      check: true,
+      radio: "myRadio3",
+      range: 50,
+      textArea: "not invalid",
+      select: "Love"
+    },
+    onSubmit: (values) => {
+      console.log("Submitted")
+      console.log(values)
+      alert(JSON.stringify(values));
+    },
+    validate: validation
+  });
 
-	changeUnit(item) {
-		json = JSON.parse(item);
-		for (var i = 0; i < Object.keys(json).length; i++) {
-			var key = Object.keys(json)[i];
-			finishJson[key] = json[key];
-		}
-	}
-handleSubmit(event) {
-  	var firstName = finishJson.firstName
-  	var city = finishJson.city
-  	var check = finishJson.check
-  	var select = finishJson.select
-  	var radio = finishJson.radio
-  	var range = finishJson.range
+  return (
+    <Container>
+      <Form onSubmit={formik.handleSubmit}>
+        <Dropdown labelText="Обо мне">
+          <AboutMe formik={formik} />
+        </Dropdown>
+        <Dropdown labelText="Другой модуль">
+          <OtherModule formik={formik} />
+        </Dropdown>
+        <Button type="submit">Отправить на решение</Button>
+      </Form>
+    </Container>
 
-  	console.log("str - " + firstName + " " + city + " " + check + " " + select + " " + radio + " " + range)
-    event.preventDefault();
-  }
-	render() {
-    	return (
-			<Container>
-			  <Form onSubmit={this.handleSubmit}>
-				  <Dropdown labelText='Обо мне'>
-				  	<AboutMe changeUnit={this.changeUnit.bind(this)}/>
-				  </Dropdown>
-				  <Dropdown labelText='Другой модуль'>
-				  	<OtherModule changeUnit={this.changeUnit.bind(this)}/>
-				  </Dropdown>
-				  <Button onClick={this.handleSubmit} type="submit">Отправить на решение</Button>
-			  </Form>
-			</Container>
-
-		);
-    }
+  );
 }
 
 export default App;
